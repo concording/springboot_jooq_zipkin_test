@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.grb.indonesia</groupId>
+    <artifactId>pay-indonesia</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>pay-indonesia</name>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.3.5.RELEASE</version>
+    </parent>
+
+
+    <properties>
+        <java.verison>1.8</java.verison>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>1.3.5.RELEASE</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>1.3.5.RELEASE</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.0.11</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.21</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.14.8</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.bgee.log4jdbc-log4j2</groupId>
+                <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+                <version>1.16</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.6</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>1.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.9</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>18.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.caucho</groupId>
+                <artifactId>hessian</artifactId>
+                <version>4.0.38</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>4.1.1</version>
+            </dependency>
+
+            <!--SpringFox dependencies -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>2.5.0</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>2.5.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-joda</artifactId>
+                <version>2.8.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>2.9.4</version>
+            </dependency>
+
+
+            <!--Test-->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jayway.restassured</groupId>
+                <artifactId>rest-assured</artifactId>
+                <version>2.3.3</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>goopal-repo</id>
+            <url>http://nexus.goopal.pri/nexus/content/groups/goopal-repo/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>goopal-repo</id>
+            <url>http://nexus.goopal.pri/nexus/content/groups/goopal-repo/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <distributionManagement>
+        <repository>
+            <id>goopal-release</id>
+            <name>goopal-release</name>
+            <url>http://nexus.goopal.pri/nexus/content/repositories/goopal-release/</url>
+        </repository>
+        <snapshotRepository>
+            <id>goopal-snapshot</id>
+            <name>goopal-snapshot</name>
+            <url>http://nexus.goopal.pri/nexus/content/repositories/goopal-snapshot/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+	
+	<profiles>
+   <profile>
+      <id>jooq</id>
+      <properties />
+      <activation>
+         <property>
+            <name>jooq</name>
+         </property>
+      </activation>
+      <build>
+         <plugins>
+            <plugin>
+               <groupId>org.jooq</groupId>
+               <artifactId>jooq-codegen-maven</artifactId>
+               <version>3.8.5</version>
+               <executions>
+                  <execution>
+                     <goals>
+                        <goal>generate</goal>
+                     </goals>
+                  </execution>
+               </executions>
+               <dependencies>
+                  <dependency>
+                     <groupId>mysql</groupId>
+                     <artifactId>mysql-connector-java</artifactId>
+                     <version>5.1.21</version>
+                  </dependency>
+               </dependencies>
+               <configuration>
+                  <jdbc>
+                     <driver>com.mysql.jdbc.Driver</driver>
+                     <url>jdbc:mysql://127.0.0.1:3306/pinpoint?useUnicode=true</url>
+                     <user>root</user>
+                     <password>123456</password>
+                  </jdbc>
+                  <generator>
+                     <database>
+                        <name>org.jooq.util.mysql.MySQLDatabase</name>
+                        <includes>.*</includes>
+                        <excludes />
+                        <inputSchema>pinpoint</inputSchema>
+                        <forcedTypes>
+                           <forcedType>
+                              <name>BOOLEAN</name>
+                              <types>(?i:TINYINT(\s*\(\d+\))?(\s*UNSIGNED)?)</types>
+                           </forcedType>
+                        </forcedTypes>
+                     </database>
+                     <generate>
+                        <deprecated>false</deprecated>
+                     </generate>
+                     <target>
+                        <packageName>com.grb.indonesia.jooq.data.jooq</packageName>
+                        <directory>/Users/wangyinbin/Documents/git_goopal/pay-indonesia/pay-indonesia-dao/src/main/java</directory>
+                     </target>
+                     <generate>
+                        <pojos>false</pojos>
+                        <daos>false</daos>
+                     </generate>
+                  </generator>
+               </configuration>
+            </plugin>
+         </plugins>
+      </build>
+   </profile>
+</profiles>
+
+  <modules>
+    <module>pay-indonesia-access-launcher</module>
+    <module>pay-indonesia-schedule-launcher</module>
+    <module>pay-indonesia-common</module>
+    <module>pay-indonesia-dao</module>
+    <module>pay-indonesia-service</module>
+  </modules>
+</project>

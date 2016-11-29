@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--设置log4j2的自身log级别为error-->
+
+<configuration status="error">
+
+
+    <Properties>
+        <Property name="dir">${sys:sys.env.logFilePath}</Property>
+    </Properties>
+
+
+    <appenders>
+
+        <console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%t] [%-5level] - %c{3.} - %m%n"/>
+        </console>
+        <RollingFile name="RollingFileInfo" fileName="${dir}/info.log"
+                     filePattern="${dir}/info-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="INFO"/>
+                <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%t] [%-5level] - %c{3.} - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="RollingFileWarn" fileName="${dir}/warn.log"
+                     filePattern="${dir}/warn-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="WARN"/>
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%t] [%-5level] - %c{3.} - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
+        <RollingFile name="RollingFileError" fileName="${dir}/error.log"
+                     filePattern="${dir}/error-%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="ERROR"/>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%t] [%-5level] - %c{3.} - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+
+        </RollingFile>
+
+
+        <Async name="async" bufferSize="1024000">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFileInfo"/>
+            <appender-ref ref="RollingFileWarn"/>
+            <appender-ref ref="RollingFileError"/>
+        </Async>
+
+
+    </appenders>
+
+
+    <loggers>
+        <!-- <logger name="log4j.logger.org.mybatis" level="debug" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger> -->
+        <root level="DEBUG">
+            <appender-ref ref="async"/>
+        </root>
+    </loggers>
+
+
+</configuration>

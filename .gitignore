@@ -1,0 +1,30 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+.project
+.settings/
+${sys:sys.env.logFilePath}/
+pay-indonesia-dao/.classpath
+pay-indonesia-dao/.project
+pay-indonesia-dao/.settings/
+pay-indonesia-access-launcher/.classpath
+pay-indonesia-access-launcher/.project
+pay-indonesia-access-launcher/.settings/
+pay-indonesia-common/.classpath
+pay-indonesia-common/.project
+pay-indonesia-common/.settings/
+pay-indonesia-schedule-launcher/.classpath
+pay-indonesia-schedule-launcher/.project
+pay-indonesia-schedule-launcher/.settings/
+pay-indonesia-service/.classpath
+pay-indonesia-service/.project
+pay-indonesia-service/.settings/
