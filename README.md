@@ -87,31 +87,6 @@ spring.datasource.master.password=123456
 springboot与jooq集成
 
 ```
-package com.grb.indonesia;
-
-import javax.sql.DataSource;
-
-import org.jooq.DSLContext;
-import org.jooq.SQLDialect;
-import org.jooq.impl.DSL;
-import org.jooq.impl.DataSourceConnectionProvider;
-import org.jooq.impl.DefaultConfiguration;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.context.annotation.Primary;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.druid.pool.vendor.MySqlValidConnectionChecker;
-
 /**
  * jooQ的配置文件，包括druid数据库连接池以及spring的事务
  * @author wangyinbin
@@ -206,25 +181,6 @@ public class JooqSpringBootConfiguration {
 
 集成brave与zipkin
 ```
-import okhttp3.OkHttpClient;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
-
-import com.github.kristofa.brave.Brave;
-import com.github.kristofa.brave.ClientTracer;
-import com.github.kristofa.brave.EmptySpanCollectorMetricsHandler;
-import com.github.kristofa.brave.Sampler;
-import com.github.kristofa.brave.SpanCollector;
-import com.github.kristofa.brave.http.DefaultSpanNameProvider;
-import com.github.kristofa.brave.http.HttpSpanCollector;
-import com.github.kristofa.brave.mysql.MySQLStatementInterceptorManagementBean;
-import com.github.kristofa.brave.okhttp.BraveOkHttpRequestResponseInterceptor;
-import com.github.kristofa.brave.servlet.BraveServletFilter;
-
 @Configuration
 public class ZipkinConfig {
 
