@@ -22,7 +22,11 @@
             <artifactId>pay-indonesia-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
+		<dependency>
+            <groupId>com.grb.indonesia</groupId>
+            <artifactId>pay-indonesia-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -174,6 +178,33 @@
 	                </exclusion>
 	            </exclusions>
 	        </dependency>
+	        
+	         <dependency>
+                 <groupId>org.springframework.boot</groupId>
+                 <artifactId>spring-boot-starter-dubbo</artifactId>
+                 <version>1.3.6.RELEASE</version>
+           </dependency>
+           
+           <dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.15</version>
+		<exclusions>
+		    <exclusion>
+		        <groupId>com.sun.jmx</groupId>
+		        <artifactId>jmxri</artifactId>
+		    </exclusion>
+		    <exclusion>
+		        <groupId>com.sun.jdmk</groupId>
+		        <artifactId>jmxtools</artifactId>
+		    </exclusion>
+		    <exclusion>
+		            <groupId>javax.jms</groupId>
+		            <artifactId>jms</artifactId>
+		    </exclusion>
+		</exclusions>
+		</dependency>
+		
     </dependencies>
 
 
