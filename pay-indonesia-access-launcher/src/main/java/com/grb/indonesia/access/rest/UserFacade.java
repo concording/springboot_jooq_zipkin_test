@@ -6,7 +6,6 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.grb.indonesia.api.UserExporterService;
 import com.grb.indonesia.service.UserService;
 
-//@Service(version="1.0.0")
 @Service
 public class UserFacade implements UserExporterService{
 
