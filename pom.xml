@@ -247,6 +247,7 @@
 </profiles>
 
   <modules>
+  	<module>pay-indonesia-api</module>
     <module>pay-indonesia-access-launcher</module>
     <module>pay-indonesia-schedule-launcher</module>
     <module>pay-indonesia-common</module>
