@@ -108,3 +108,9 @@
         }
     }
     ```
+###参考资料
+- [zipkin-1](https://github.com/liaokailin/zipkin)  springboot整合方式以及代码解析
+- [zipkin-2](https://zhuanlan.zhihu.com/p/20941369)  springMVC的集成方式
+- [zipkin-3](https://docs.google.com/document/d/1OhysVVtZ0MWrRM5gU2dXZwQorb5fA2jqOe0J_Z1AjI0/edit)  zipkin相关的论文
+
+

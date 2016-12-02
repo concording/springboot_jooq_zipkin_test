@@ -2,22 +2,21 @@
 ###增加dubbo的依赖
 ```
 <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>dubbo</artifactId>
-                <version>2.5.2</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            
-             <dependency>
-                 <groupId>org.springframework.boot</groupId>
-                 <artifactId>spring-boot-starter-dubbo</artifactId>
-                 <version>1.3.6.RELEASE</version>
-           </dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>dubbo</artifactId>
+    <version>2.5.2</version>
+    <exclusions>
+        <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+ <dependency>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-starter-dubbo</artifactId>
+     <version>1.3.6.RELEASE</version>
+</dependency>
 ```
 ###dubbo的配置文件
 ```
@@ -103,7 +102,8 @@ spring.dubbo.scan=com.grb.indonesia
 
 ###参考资料
 
-[spring-boot-starter-dubbo项目](https://github.com/linking12/spring-boot-starter-dubbo) 
+[spring-boot-starter-dubbo](https://github.com/linking12/spring-boot-starter-dubbo)项目
+
 
 
 
