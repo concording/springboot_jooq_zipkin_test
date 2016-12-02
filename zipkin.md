@@ -1,10 +1,9 @@
 #zipkin的使用
 
-下载openzipkin项目，打包运行`java -jar zipkin.jar`
+###运行zipkin
+下载openzipkin项目，打包运行`java -jar zipkin.jar`访问http://localhost:9411/查看是否成功
 
-访问http://localhost:9411/查看是否成功
-
-集成brave与zipkin
+###集成brave与zipkin
 - POM依赖，按照需求选取合适的jar
     
     ```
