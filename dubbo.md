@@ -40,65 +40,64 @@ spring.dubbo.scan=com.grb.indonesia
     - 方式一:
     
         bean配置
-    ```
-        <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
-        <dubbo:application name="hehe_consumer" />
+            ```
+            <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+            <dubbo:application name="hehe_consumer" />
 
-        <!-- 使用zookeeper注册中心暴露服务地址 -->
-        <!-- <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
-        <dubbo:registry address="zookeeper://127.0.0.1:2181" />
+            <!-- 使用zookeeper注册中心暴露服务地址 -->
+            <!-- <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
+            <dubbo:registry address="zookeeper://127.0.0.1:2181" />
 
-        <!-- 生成远程服务代理，可以像使用本地bean一样使用demoService -->
-        <dubbo:reference id="demoService" interface="com.grb.zk.TestZookeeper.provider.DemoService" />
-        
-        <dubbo:reference id="userService" interface="com.grb.indonesia.api.UserExporterService" />
-
-    ```
+            <!-- 生成远程服务代理，可以像使用本地bean一样使用demoService -->
+            <dubbo:reference id="demoService" interface="com.grb.zk.TestZookeeper.provider.DemoService" />
+            
+            <dubbo:reference id="userService" interface="com.grb.indonesia.api.UserExporterService" />
+            ```
 
         调用方式
 
-    ```
-    public class UserConsumer {
-        public static void main(String[] args) throws IOException {
-            ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(  
-                    new String[] { "applicationContext.xml" });  
-            context.start();  
-      
-            UserExporterService demoService = (UserExporterService) context.getBean("userService");
-            demoService.echo();
+        ```
+        public class UserConsumer {
+            public static void main(String[] args) throws IOException {
+                ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(  
+                        new String[] { "applicationContext.xml" });  
+                context.start();  
+          
+                UserExporterService demoService = (UserExporterService) context.getBean("userService");
+                demoService.echo();
+            }
         }
-    }
-    ```
+        ```
     - 方式二（使用spring-boot-starter-dubbo）:
     
         在Spring Boot项目的pom.xml中添加以下依赖:
 
-    ```
-    <dependency>
-             <groupId>org.springframework.boot</groupId>
-             <artifactId>spring-boot-starter-dubbo</artifactId>
-             <version>1.3.1.RELEASE</version>
-     </dependency>
-    ```
+        ```
+        <dependency>
+                 <groupId>org.springframework.boot</groupId>
+                 <artifactId>spring-boot-starter-dubbo</artifactId>
+                 <version>1.3.1.RELEASE</version>
+         </dependency>
+        ```
 
         在application.properties添加Dubbo的版本信息和客户端超时信息,如下:
 
-    ```
-    spring.dubbo.application.name=test-consumer
-    spring.dubbo.registry.address=zookeeper://127.0.0.1:2181
-    spring.dubbo.scan=com.grb.indonesia
-    ```
+        ```
+        spring.dubbo.application.name=test-consumer
+        spring.dubbo.registry.address=zookeeper://127.0.0.1:2181
+        spring.dubbo.scan=com.grb.indonesia
+        ```
 
         引用Dubbo服务,只需要添加要发布的服务实现上添加 @Reference ,如下:
-        
-    ```
-    @Component
-    public class UserAction {
 
-        @Reference(version = "1.0.0")
-        private UserExporterService fooService;
-    }
-    ```
+        ```
+        @Component
+        public class UserAction {
+
+            @Reference(version = "1.0.0")
+            private UserExporterService fooService;
+        }
+        ```
 
 
 
