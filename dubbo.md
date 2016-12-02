@@ -101,7 +101,9 @@ spring.dubbo.scan=com.grb.indonesia
         ```
 
 
+###参考资料
 
+[spring-boot-starter-dubbo项目](https://github.com/linking12/spring-boot-starter-dubbo) 
 
 
 
