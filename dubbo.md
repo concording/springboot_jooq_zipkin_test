@@ -1,1 +1,30 @@
-
+#dubbo的使用
+增加dubbo的依赖
+```
+<dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>2.5.2</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            
+             <dependency>
+                 <groupId>org.springframework.boot</groupId>
+                 <artifactId>spring-boot-starter-dubbo</artifactId>
+                 <version>1.3.6.RELEASE</version>
+           </dependency>
+```
+dubbo的配置文件
+```
+spring.dubbo.application.name=provider
+spring.dubbo.registry.address=zookeeper://127.0.0.1:2181
+spring.dubbo.protocol.name=dubbo
+spring.dubbo.protocol.port=20880
+spring.dubbo.scan=com.grb.indonesia
+```
+使用dubbo，在实现类上增加`@Service`
