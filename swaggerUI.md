@@ -62,3 +62,5 @@ public class DemoCtl extends AbstractCtl{
     }
 }
 ```
+###参考网址
+[swaggerUI](https://springfox.github.io/springfox/docs/current/)
