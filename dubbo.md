@@ -66,6 +66,30 @@ dubbo的测试方法：
         }
     }
     ```
+    ####方式二（使用spring-boot-starter-dubbo）:
+    ######在Spring Boot项目的pom.xml中添加以下依赖:
+    ```
+    <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-dubbo</artifactId>
+             <version>1.3.1.RELEASE</version>
+     </dependency>
+    ```
+    ######在application.properties添加Dubbo的版本信息和客户端超时信息,如下:
+    ```
+    spring.dubbo.application.name=test-consumer
+    spring.dubbo.registry.address=zookeeper://127.0.0.1:2181
+    spring.dubbo.scan=com.grb.indonesia
+    ```
+    ######引用Dubbo服务,只需要添加要发布的服务实现上添加 @Reference ,如下:
+    ```
+    @Component
+    public class UserAction {
+
+        @Reference(version = "1.0.0")
+        private UserExporterService fooService;
+    }
+    ```
 
 
 
