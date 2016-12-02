@@ -1,5 +1,5 @@
-#dubbo的使用
-##增加dubbo的依赖
+##dubbo的使用
+###增加dubbo的依赖
 ```
 <dependency>
                 <groupId>com.alibaba</groupId>
@@ -19,7 +19,7 @@
                  <version>1.3.6.RELEASE</version>
            </dependency>
 ```
-##dubbo的配置文件
+###dubbo的配置文件
 ```
 spring.dubbo.application.name=provider
 spring.dubbo.registry.address=zookeeper://127.0.0.1:2181
@@ -27,7 +27,8 @@ spring.dubbo.protocol.name=dubbo
 spring.dubbo.protocol.port=20880
 spring.dubbo.scan=com.grb.indonesia
 ```
-##使用dubbo，在实现类上增加`@Service`
+###使用dubbo
+在实现类上增加`@Service`
 
 ##dubbo的测试方法：
 
