@@ -38,6 +38,7 @@ spring.dubbo.scan=com.grb.indonesia
 - 将springboot_jooq_zipkin_test项目打包并将api包发布出去。相关的应用引用并调用即可。
 
     - 方式一:
+    
         bean配置
     ```
         <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
@@ -53,7 +54,9 @@ spring.dubbo.scan=com.grb.indonesia
         <dubbo:reference id="userService" interface="com.grb.indonesia.api.UserExporterService" />
 
     ```
+
         调用方式
+
     ```
     public class UserConsumer {
         public static void main(String[] args) throws IOException {
@@ -67,7 +70,9 @@ spring.dubbo.scan=com.grb.indonesia
     }
     ```
     - 方式二（使用spring-boot-starter-dubbo）:
+    
         在Spring Boot项目的pom.xml中添加以下依赖:
+
     ```
     <dependency>
              <groupId>org.springframework.boot</groupId>
@@ -75,13 +80,17 @@ spring.dubbo.scan=com.grb.indonesia
              <version>1.3.1.RELEASE</version>
      </dependency>
     ```
+
         在application.properties添加Dubbo的版本信息和客户端超时信息,如下:
+
     ```
     spring.dubbo.application.name=test-consumer
     spring.dubbo.registry.address=zookeeper://127.0.0.1:2181
     spring.dubbo.scan=com.grb.indonesia
     ```
+
         引用Dubbo服务,只需要添加要发布的服务实现上添加 @Reference ,如下:
+        
     ```
     @Component
     public class UserAction {
