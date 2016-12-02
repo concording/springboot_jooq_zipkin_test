@@ -28,3 +28,5 @@ spring.dubbo.protocol.port=20880
 spring.dubbo.scan=com.grb.indonesia
 ```
 使用dubbo，在实现类上增加`@Service`
+
+dubbo的测试方法：
