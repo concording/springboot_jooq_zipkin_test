@@ -205,6 +205,12 @@
 		</exclusions>
 		</dependency>
 		
+		<!-- rabbitMQ -->
+           <dependency>
+			  <groupId>com.rabbitmq</groupId>
+			  <artifactId>amqp-client</artifactId>
+		   </dependency>
+		   
     </dependencies>
 
 
