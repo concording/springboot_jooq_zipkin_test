@@ -20,7 +20,7 @@ public class RedisConfig {
 	
 	@Primary
     @Bean(name = "redis")
-    public Jedis txManager() {
+    public Jedis getJedis() {
 		Jedis jedis = new Jedis(ip);
         return jedis;
     }

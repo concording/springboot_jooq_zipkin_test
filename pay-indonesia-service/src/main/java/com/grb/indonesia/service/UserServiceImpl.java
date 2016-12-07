@@ -1,8 +1,12 @@
 package com.grb.indonesia.service;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
+
+import javax.annotation.Resource;
 
 import org.jooq.Configuration;
 import org.jooq.DSLContext;
@@ -20,12 +24,16 @@ import redis.clients.jedis.Jedis;
 import com.grb.indonesia.entity.Tables;
 import com.grb.indonesia.entity.tables.TestDate;
 import com.grb.indonesia.entity.tables.records.TestDateRecord;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
 
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired DSLContext dsl;
 	@Autowired Jedis redis;
+	@Resource(name="rabbitMQConnection")
+	Connection connection;
 	@Autowired DataSourceTransactionManager txManager;
 	
 	@Override
@@ -47,22 +55,46 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public void testAnnotationTransaction() throws Exception{
+		testMQ();
+		testRedis();
+		Timestamp time = new Timestamp(new Date().getTime());
+		dsl.insertInto(Tables.TEST_DATE,TestDate.TEST_DATE.ID,TestDate.TEST_DATE.DT).values(11L,time).execute();
+	}
+	
+	private void testRedis() throws Exception {
+		
 		try {
 			//从redis中取数据，若无则存redis，若超时则从数据库中取
 			String values = "";
-			if(redis.get("key1") != null){
-				values = redis.get("key1");
+			if(redis.get("key") != null){
+				values = redis.get("key");
 			}else{
-				redis.set("key1", "value1");
+				redis.set("key", "value");
 			}
-			Timestamp time = new Timestamp(new Date().getTime());
-			dsl.insertInto(Tables.TEST_DATE,TestDate.TEST_DATE.ID,TestDate.TEST_DATE.DT).values(11L,time).execute();
 		} catch (Exception e) {
-			System.out.println(e);
-			throw new Exception("除0异常");
+			throw new Exception("redis异常,error=",e);
 		}
 	}
-	
+
+	private void testMQ() {
+		
+		//放入RabbitMQ
+	    try {
+	    	Channel channel = connection.createChannel();
+			channel.queueDeclare("test-rabbitMQ", false, false, false, null);
+			String message = "Hello World!";
+			for(int i=0;i<10;i++){
+			    channel.basicPublish("", "test-rabbitMQ", null, message.getBytes("UTF-8"));
+			}
+		    System.out.println(" [x] Sent '" + message + "'");
+		    channel.close();
+		    connection.close();
+		} catch (IOException e) {
+		} catch (TimeoutException e) {
+		}
+		
+	}
+
 	/**
 	 * 测试编程式事务
 	 */
