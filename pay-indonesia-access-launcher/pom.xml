@@ -210,7 +210,11 @@
 			  <groupId>com.rabbitmq</groupId>
 			  <artifactId>amqp-client</artifactId>
 		   </dependency>
-		   
+		<!-- redis -->
+		<dependency>
+             <groupId>redis.clients</groupId>
+             <artifactId>jedis</artifactId>
+         </dependency>
     </dependencies>
 
 

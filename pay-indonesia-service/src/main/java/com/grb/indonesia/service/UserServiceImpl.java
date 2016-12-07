@@ -15,6 +15,8 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import redis.clients.jedis.Jedis;
+
 import com.grb.indonesia.entity.Tables;
 import com.grb.indonesia.entity.tables.TestDate;
 import com.grb.indonesia.entity.tables.records.TestDateRecord;
@@ -23,6 +25,7 @@ import com.grb.indonesia.entity.tables.records.TestDateRecord;
 public class UserServiceImpl implements UserService {
 
 	@Autowired DSLContext dsl;
+	@Autowired Jedis redis;
 	@Autowired DataSourceTransactionManager txManager;
 	
 	@Override
@@ -44,8 +47,14 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public void testAnnotationTransaction() throws Exception{
-		
 		try {
+			//从redis中取数据，若无则存redis，若超时则从数据库中取
+			String values = "";
+			if(redis.get("key1") != null){
+				values = redis.get("key1");
+			}else{
+				redis.set("key1", "value1");
+			}
 			Timestamp time = new Timestamp(new Date().getTime());
 			dsl.insertInto(Tables.TEST_DATE,TestDate.TEST_DATE.ID,TestDate.TEST_DATE.DT).values(11L,time).execute();
 		} catch (Exception e) {
