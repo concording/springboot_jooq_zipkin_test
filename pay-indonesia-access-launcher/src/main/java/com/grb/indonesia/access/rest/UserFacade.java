@@ -2,11 +2,11 @@ package com.grb.indonesia.access.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.alibaba.dubbo.config.annotation.Service;
+//import com.alibaba.dubbo.config.annotation.Service;
 import com.grb.indonesia.api.UserExporterService;
 import com.grb.indonesia.service.UserService;
 
-@Service(version="1.0.0")
+//@Service(version="1.0.0")
 public class UserFacade implements UserExporterService{
 
 	@Autowired UserService uservice;
@@ -15,7 +15,7 @@ public class UserFacade implements UserExporterService{
 	public void echo() {
 		
 		try {
-			uservice.testAnnotationTransaction();
+			uservice.testDeclareTransaction();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
