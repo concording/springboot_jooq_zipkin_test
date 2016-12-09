@@ -24,8 +24,12 @@ import redis.clients.jedis.Jedis;
 import com.grb.indonesia.entity.Tables;
 import com.grb.indonesia.entity.tables.TestDate;
 import com.grb.indonesia.entity.tables.records.TestDateRecord;
+import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.Consumer;
+import com.rabbitmq.client.DefaultConsumer;
+import com.rabbitmq.client.Envelope;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -76,7 +80,7 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	private void testMQ() {
+	private void testMQ() throws Exception{
 		
 		//放入RabbitMQ
 	    try {
@@ -99,8 +103,10 @@ public class UserServiceImpl implements UserService {
 	 * 测试编程式事务
 	 */
 	@Override
-	public void testDeclareTransaction() throws Exception{
+	public boolean testDeclareTransaction() throws Exception{
 		
+		consumerRabbitMQ();
+		boolean isTrue = true;
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
 		TransactionStatus transactionStatus = null;
 		transactionStatus = txManager.getTransaction(def);
@@ -110,12 +116,34 @@ public class UserServiceImpl implements UserService {
 			int i = 1/0;
 			txManager.commit(transactionStatus);
 		} catch (Exception e) {
+			isTrue = false;
 			txManager.rollback(transactionStatus);
 			System.out.println(e);
 			throw new Exception("除0异常");
 		}
+		return isTrue;
 	}
 	
+	private void consumerRabbitMQ() throws Exception{
+		
+		try {
+	    	Channel channel = connection.createChannel();
+	    	channel.queueDeclare("test-rabbitMQ", false, false, false, null);
+	        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+
+	        Consumer consumer = new DefaultConsumer(channel) {
+	          @Override
+	          public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
+	              throws IOException {
+	            String message = new String(body, "UTF-8");
+	            System.out.println(" [x] Received '" + message + "'");
+	          }
+	        };
+	        channel.basicConsume("test-rabbitMQ", true, consumer);
+		} catch (IOException e) {
+		} 
+	}
+
 	/**
 	 * 只更新部分字段
 	 

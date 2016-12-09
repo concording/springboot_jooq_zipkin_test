@@ -12,5 +12,5 @@ public interface UserService {
 	@Transactional(rollbackFor=Exception.class)
 	public void testAnnotationTransaction() throws Exception;
 	
-	public void testDeclareTransaction() throws Exception;
+	public boolean testDeclareTransaction() throws Exception;
 }

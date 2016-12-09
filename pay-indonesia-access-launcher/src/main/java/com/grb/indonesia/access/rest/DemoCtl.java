@@ -44,7 +44,6 @@ public class DemoCtl extends AbstractCtl{
     	
         this.getLogger().info("{}", echoReq);
         try {
-        	
         	userService.testAnnotationTransaction();
 		} catch (Exception e) {
 		}

@@ -6,17 +6,15 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grb.indonesia.access.params.EchoRsp;
 import com.grb.indonesia.service.UserService;
 
-@EnableEurekaClient
 @RestController
 @Api(value = "eureka", description = "测试eureka API", tags = {"eureka"})
-public class UserFacadeEurekaClientCtl{
+public class UserFacadeEurekaClientCtl extends AbstractCtl{
 
 	@Autowired UserService uservice;
 	
@@ -26,8 +24,13 @@ public class UserFacadeEurekaClientCtl{
     @RequestMapping(value="/testEureka")
 	public String echo() {
 		
-			//uservice.testAnnotationTransaction();
-			//System.out.println("test Eureka");
-			return "hello world";
+		System.out.println("hello world ! welcome to pay-indonesia");
+		try {
+			uservice.testDeclareTransaction();
+		} catch (Exception e) {
+			this.getLogger().error("来自客户端的调用失败了",e);
+		}
+		//System.out.println("test Eureka");
+		return "hello world ! welcome to pay-indonesia";
 	}
 }

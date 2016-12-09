@@ -7,7 +7,7 @@ import com.grb.indonesia.api.UserExporterService;
 import com.grb.indonesia.service.UserService;
 
 //@Service(version="1.0.0")
-public class UserFacade implements UserExporterService{
+public class UserFacadeDubboClientCtl implements UserExporterService{
 
 	@Autowired UserService uservice;
 	
