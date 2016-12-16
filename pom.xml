@@ -257,8 +257,8 @@
                         <directory>/Users/wangyinbin/Documents/git_goopal/pay-indonesia/pay-indonesia-dao/src/main/java</directory>
                      </target>
                      <generate>
-                        <pojos>false</pojos>
-                        <daos>false</daos>
+                        <pojos>true</pojos>
+                        <daos>true</daos>
                      </generate>
                   </generator>
                </configuration>
