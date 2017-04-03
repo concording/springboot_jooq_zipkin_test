@@ -1,4 +1,4 @@
-#zipkin的使用
+#zipkin的使用方法
 
 ###运行zipkin
 下载openzipkin项目，打包运行`java -jar zipkin.jar`访问http://localhost:9411/查看是否成功
