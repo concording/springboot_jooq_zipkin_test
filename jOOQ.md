@@ -1,3 +1,4 @@
+
 #jooq的使用
 配置MYSQL的连接地址 
 
@@ -8,7 +9,7 @@ spring.datasource.master.username=root
 spring.datasource.master.password=123456
 ```
 
-使用jooq生成java代码
+使用jooq生成java代码(可以使用maven-mysql插件的方式优化)
 配置POM文件，并运行`mvn clean install -Djooq`
 ```
 <profiles>
